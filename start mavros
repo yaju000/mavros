@@ -1,0 +1,9 @@
+#step1 
+$roslaunch mavros px4.launch
+$roslaunch mavros apm.launch
+$roslaunch mavros px4.launch fcu_url:=/dev/ttyUSB0
+$sudo chmod 777 /dev/{port number}
+#step2
+$rosservice call /mavros/set_stream_rate "{message_rate: 10, on_off: 1}"
+$rosservice call /mavros/set_mode '{custom_mode: GUIDED}'
+$rostopic pub /mavros/setpoint_raw/global mavros_msgs/GlobalPositionTarget '{altitude: 120, longitude: 24, altitude: 100}'
